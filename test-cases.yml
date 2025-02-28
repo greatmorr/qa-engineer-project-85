@@ -1,0 +1,175 @@
+---
+#tutorial game
+- summary: |
+    Проверка возможности создать и пройти игру без регистрации и авторизации
+  requirement: |
+    Любой пользователь имеет возможность начать игру без регистрации и авторизации
+  prerequisites: |
+    empty
+  test-data: |
+    empty
+  steps:
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "TRY SIMPLE BATTLE"
+  expected-results: |
+    Успешное создание игры без регистрации
+#registration
+- summary: |
+    Успешная регистрация на сайте
+  requirement: |
+    Пользователь должен иметь возможность зарегистрироваться на сайте 
+  prerequisites: |
+    epmty
+  test-data: |
+    empty
+  steps:
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign up"
+    - В поле Nickname ввести любое слово, например Shifr
+    - Заполнить email, например mir_shifra@mail.ru
+    - Придумать пароль и ввести в поле Password, например Password123
+    - Продублировать пароль в поле Password Confirmation
+    - Нажать кнопку Submit
+  expected-result: |
+    Пользователь успешно зарегистрирован
+#registration with empty forms
+- summary: |
+    Проверка регистрации с незполненной формой регистрации
+  requirement: |
+    Сайт не должен пропустить регистрацию с незаполненными полями
+  prerequisites: |
+    epmty
+  test-data: |
+    empty
+  steps:
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign up"
+    - оставить все поля формы пустыми
+    - Нажать кнопку Submit
+  expected-result: |
+    Регистрация не проходит, появляются сообщения об ошибке
+#registration with invalid email
+- summary: |
+    Проверка регистрации с невалидными адресом электронной почты
+  requirement: |
+    Сайт не должен пропустить регистрацию с невалидным адресом электронной почты
+  prerequisites: |
+    epmty
+  test-data: |
+    empty
+  steps:
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign up"
+    - заполнить поле Nickname, наример, Petr
+    - Заполнить поле email невалидными данными, например mir_shifra@post
+    - Нажать кнопку Submit
+  expected-result: |
+    Регистрация не проходит, появляется сообщения об ошибке
+#registration with already used email
+- summary: |
+    Регистрация с уже существующим email
+  requirement: |
+    Сайт не должен пропустить регистрацию пользователя с уже использующимся адресом электронной почты
+  prerequisites: |
+    заранее осуществить регистрацию пользователя с электронным адресом mir_shifra@mail.ru
+  test-data: |
+    email: mir_shifra@mail.ru
+  steps:
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign up"
+    - заполнить поле Nickname, наример, Fedor
+    - Заполнить поле email mir_shifra@mail.ru
+    - Нажать кнопку Submit
+  expected-result: |
+    Пользователь не зарегистрирован и видит ошибку
+#registration with already used nickname
+- summary: |
+    Регистрация с уже существующим nickname
+  requirement: |
+    Сайт не должен пропустить регистрацию пользователя с уже использующимся именем пользователя Nickname
+  prerequisites: |
+    заранее осуществить регистрацию пользователя с Nickname Shifr
+  test-data: |
+    Nickname: Shifr
+  steps:
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign up"
+    - заполнить поле Nickname, наример, Shifr
+    - Заполнить поле email mir_kino@mail.ru
+    - Нажать кнопку Submit
+  expected-result: |
+    Пользователь не зарегистрирован и видит ошибку
+#login with valid data
+- summary: |
+    Успешная авторизация на сайте
+  requirement: |
+    Пользователь должен иметь возможность авторизоваться со своими данными на сайте 
+  prerequisites: |
+    заранее осуществить регистрацию пользователя с Nickname Shifr
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign in"
+    - заполнить форму авторизации
+    - Нажать кнопку Submit
+  expected-result: |
+    Пользователь успешно авторизован на сайте
+#login with wrong password
+- summary: |
+    Авторизация с неверным паролем на сайте
+  requirement: |
+    Пользователь должен иметь возможность авторизоваться со своими данными на сайте 
+  prerequisites: |
+    заранее осуществить регистрацию пользователя с Nickname Shifr
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password321
+  steps:
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign in"
+    - заполнить форму авторизации
+    - Нажать кнопку Submit
+  expected-result: |
+    Пользователь не авторизован на сайте, выводится сообщение об ошибке
+#password recovery
+- summary: |
+    Восстановление пароля
+  requirement: |
+    Пользователь должен иметь возможность восстановить пароль
+  prerequisites: |
+    используются данные пользователя с Nickname Shifr
+  test-data: |
+    Email - mir_shifra@mail.ru
+  steps:
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign in"
+    - Нажать кнопку Forget your password?
+    - в поле Email ввести данные и нажать кнопку Submit
+    - проделать шаги по восстановлению пароля из письма на указанной почте
+    - авторизоваться с новым паролем
+  expected-result: |
+    Успешная авторизация пользователя с новым паролем
+#signin with GitHub
+- summary: |
+    авторизация пользователя на сайте с помощью аккаунта на Github
+  requirement: |
+    Пользователь должен иметь возможность авторизоваться со своим аккаунтом на Github
+  prerequisites: |
+    используются данные пользователя с помощью аккаунта на Github
+  test-data: |
+    empty
+  steps:
+    - авторизоваться в отдельной вкладе на сайте Github
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign in"
+    - Нажать кнопку Sign in with Github
+  expected-result: |
+    Успешная авторизация пользователя спомощью аккаунта на Github
+#signin with Discord
+- summary: |
+    авторизация пользователя на сайте с помощью аккаунта на Discord
+  requirement: |
+    Пользователь должен иметь возможность авторизоваться со своим аккаунтом на Discord
+  prerequisites: |
+    используются данные пользователя с аккаунта на Discord
+  test-data: |
+    empty
+  steps:
+    - авторизоваться в отдельной вкладе на сайте Discord
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign in"
+    - Нажать кнопку Sign in with Discord
+  expected-result: |
+    Успешная авторизация пользователя с помощью аккаунта на Discord
+
