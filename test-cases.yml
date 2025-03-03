@@ -172,5 +172,36 @@
     - Нажать кнопку Sign in with Discord
   expected-result: |
     Успешная авторизация пользователя с помощью аккаунта на Discord
+#chat
+- summary: |
+    работа чата на основной странице
+  requirement: |
+    Пользователь должен иметь возможность общаться в чате с зарегистрированными пользователями
+  prerequisites: |
+    авторизоваться используя данные пользователя с Nickname Shifr 
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - на странице https://codebattle.hexlet.io/#lobby в строке чата "Be nice in chat!" ввести "Привет Мир!"
+    - нажать кнопку Send
+  expected-result: |
+    Сообщение "Привет Мир!" должно появиться в окне чата
+#game with bot
+- summary: |
+    проверка создания игры с ботом
+  requirement: |
+    Пользователь должен иметь возможность создать игру с ботом
+  prerequisites: |
+    авторизоваться используя данные пользователя с Nickname Shifr 
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - на странице https://codebattle.hexlet.io/#lobby нажать кнопку "CREATE A GAME"
+    - выбрать Game type - WIth a bot
+    - нажать кнопку "Create battle"
+  expected-result: |
+    Успешное создание игры с ботом
 
 
