@@ -221,5 +221,129 @@
     - нажать кнопку "Create battle"
   expected-result: |
     Успешное создание игры с ботом
-
+#game with friend
+- summary: |
+    проверка создания игры с другом
+  requirement: |
+    Пользователь должен иметь возможность создать игру с другом
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr 
+    авторизоваться вторым пользователем через личный Github
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - на странице https://codebattle.hexlet.io/#lobby нажать кнопку "CREATE A GAME"
+    - выбрать Game type - With a friend
+    - в поле Choose opponent - ввести Nickname второго пользователя
+    - можно установить парметры сложности, выбрать игру, либо оставить по умолчанию 
+    - нажать кнопку "Create invite"
+    - принять Invite обоими игроками
+  expected-result: |
+    Успешное создание игры с другом
+#chat in game with friend
+- summary: |
+    проверка работы чата в игре с другом
+  requirement: |
+    Пользователь должен иметь возможность переписываться в чате в игре с другом
+  prerequisites: |
+    авторизоваться используя данные пользователя с Nickname Shifr 
+    авторизоваться вторым пользователем через личный Github
+    создана игра с другом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - первым игроком во время игры в окне чата написать произвольное сообщение в строке Be nice in chat!
+    - вторым игроко мнаписать ответное сообщение в строке Be nice in chat!
+  expected-result: |
+    Успешнная переписка в чате с другом
+#game with other user
+- summary: |
+    проверка создания игры с другим пользователем
+  requirement: |
+    Пользователь должен иметь возможность создать игру с другим пользователем
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr 
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - на странице https://codebattle.hexlet.io/#lobby нажать кнопку "CREATE A GAME"
+    - выбрать Game type - With other user
+    - можно установить парметры сложности, выбрать игру, либо оставить по умолчанию 
+    - нажать кнопку "Create battle"
+    - вторым пользователем на главное странице в разделе Lobby на строке созданной игры нажать кнопку Fight и присоединится к игре
+  expected-result: |
+    Успешное создание игры с другим пользователем
+#game with other user by url
+- summary: |
+    проверка работы ссылки на игру
+  requirement: |
+    Пользователь должен иметь возможность отправить ссылку на созданную игру другому пользователю
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr 
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - на странице https://codebattle.hexlet.io/#lobby нажать кнопку "CREATE A GAME"
+    - выбрать Game type - With other user
+    - можно установить парметры сложности, выбрать игру, либо оставить по умолчанию 
+    - нажать кнопку "Create battle"
+    - на главной странице в разделе Lobby на строке созданной игры нажать кнопку Copy link и отправить второму пользователю
+    - вторым пользователем пройти по ссылке
+  expected-result: |
+    Успешное создание игры с другим пользователем по ссылке
+#game choosing Level
+- summary: |
+    проверка возможности установить сложность игры Level
+  requirement: |
+    Пользователь должен иметь возможность установить сложность игры
+  prerequisites: |
+    авторизоваться используя данные пользователя с Nickname Shifr 
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - на странице https://codebattle.hexlet.io/#lobby нажать кнопку "CREATE A GAME"
+    - выбрать Game type - With a bot
+    - установить Level сложность игры
+    - нажать кнопку "Create battle"
+  expected-result: |
+    Успешное создание игры с выбранным уровнем сложности
+#game choosing task by tag
+- summary: |
+    проверка возможности фильтрации задания по тегу tags
+  requirement: |
+    Пользователь должен иметь возможность фильтровать задания тегу tag
+  prerequisites: |
+    авторизоваться используя данные пользователя с Nickname Shifr 
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - на странице https://codebattle.hexlet.io/#lobby нажать кнопку "CREATE A GAME"
+    - выбрать Game type - With a bot
+    - выбрать тег math
+    - нажать кнопку "Create battle"
+  expected-result: |
+    Успешное создание игры с выбранным тегом
+#game choosing time control_minimum
+- summary: |
+    проверка возможности установки минимального времени игры (3 мин)
+  requirement: |
+    Пользователь должен иметь возможность установить минимальное ограничение по времени  
+  prerequisites: |
+    авторизоваться используя данные пользователя с Nickname Shifr 
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - на странице https://codebattle.hexlet.io/#lobby нажать кнопку "CREATE A GAME"
+    - выбрать Game type - With a bot
+    - установить отметку в Time control на минимум
+    - нажать кнопку "Create battle"
+  expected-result: |
+    Успешное создание игры с минимальным временем игры
 
