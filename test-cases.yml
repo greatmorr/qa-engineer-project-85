@@ -23,7 +23,7 @@
     empty
   steps:
     - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign up"
-    - В поле Nickname ввести любое слово, например Shifr
+    - В поле Nickname ввести любое слово латинскими буквами, цифрами, например Shifr
     - Заполнить email, например mir_shifra@mail.ru
     - Придумать пароль и ввести в поле Password, например Password123
     - Продублировать пароль в поле Password Confirmation
@@ -42,6 +42,23 @@
   steps:
     - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "Sign up"
     - оставить все поля формы пустыми
+    - Нажать кнопку Submit
+  expected-result: |
+    Регистрация не проходит, появляются сообщения об ошибке
+#registration with invalid nickname
+- summary: |
+    Проверка регистрации с невалидным Nickname
+  requirement: |
+    Сайт не должен пропустить регистрацию с Nickname на кирилице и со спецсимволами
+  prerequisites: |
+    epmty
+  test-data: |
+    empty
+  steps:
+    - В поле Nickname ввести любое слово на кирилице, например КиноДобро
+    - Заполнить email, например mir_kino@mail.ru
+    - Придумать пароль и ввести в поле Password, например Password123
+    - Продублировать пароль в поле Password Confirmation
     - Нажать кнопку Submit
   expected-result: |
     Регистрация не проходит, появляются сообщения об ошибке
@@ -199,7 +216,8 @@
     Password - Password123
   steps:
     - на странице https://codebattle.hexlet.io/#lobby нажать кнопку "CREATE A GAME"
-    - выбрать Game type - WIth a bot
+    - выбрать Game type - With a bot
+    - можно установить парметры сложности, выбрать игру, либо оставить по умолчанию
     - нажать кнопку "Create battle"
   expected-result: |
     Успешное создание игры с ботом
