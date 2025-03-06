@@ -301,7 +301,7 @@
   requirement: |
     Пользователь должен иметь возможность установить сложность игры
   prerequisites: |
-    авторизоваться используя данные пользователя с Nickname Shifr 
+    авторизоваться, используя данные пользователя с Nickname Shifr 
   test-data: |
     Email - mir_shifra@mail.ru
     Password - Password123
@@ -318,7 +318,7 @@
   requirement: |
     Пользователь должен иметь возможность фильтровать задания тегу tag
   prerequisites: |
-    авторизоваться используя данные пользователя с Nickname Shifr 
+    авторизоваться, используя данные пользователя с Nickname Shifr 
   test-data: |
     Email - mir_shifra@mail.ru
     Password - Password123
@@ -326,16 +326,15 @@
     - на странице https://codebattle.hexlet.io/#lobby нажать кнопку "CREATE A GAME"
     - выбрать Game type - With a bot
     - выбрать тег math
-    - нажать кнопку "Create battle"
   expected-result: |
-    Успешное создание игры с выбранным тегом
+    Отображается список игр по выбранному тегу
 #game choosing time control_minimum
 - summary: |
     проверка возможности установки минимального времени игры (3 мин)
   requirement: |
-    Пользователь должен иметь возможность установить минимальное ограничение по времени  
+    Пользователь должен иметь возможность установить минимальное ограничение по времени игры  
   prerequisites: |
-    авторизоваться используя данные пользователя с Nickname Shifr 
+    авторизоваться, используя данные пользователя с Nickname Shifr 
   test-data: |
     Email - mir_shifra@mail.ru
     Password - Password123
@@ -346,4 +345,237 @@
     - нажать кнопку "Create battle"
   expected-result: |
     Успешное создание игры с минимальным временем игры
-
+#game choosing time control_maximum
+- summary: |
+    проверка возможности установки максимального времени игры (60 мин)
+  requirement: |
+    Пользователь должен иметь возможность установить максимальное ограничение по времени игры 
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr 
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - на странице https://codebattle.hexlet.io/#lobby нажать кнопку "CREATE A GAME"
+    - выбрать Game type - With a bot
+    - установить отметку в Time control на мксимум
+    - нажать кнопку "Create battle"
+  expected-result: |
+    Успешное создание игры с максимальным временем игры
+#game task on russian
+- summary: |
+    проверка отображения задания TASK на русском языке в процессе игры
+  requirement: |
+    Пользователь должен иметь возможность сменить язык задания с английского (стоит по умолчанию) на русский во время игры
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры на вкладке TASK в сплывающем списке выбрать RU (русский язык)
+  expected-result: |
+    Задание игры отображается на русском языке
+#game task on russian and back on english
+- summary: |
+    проверка обратного переключения отображения задания TASK на английский язык в процессе игры
+  requirement: |
+    Пользователь должен иметь возможность сменить язык задания обратно на английский после переключения на русский во время игры
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры на вкладке TASK в сплывающем списке выбрать RU (русский язык)
+    - переключить обратно на EN (английский)
+  expected-result: |
+    Задание игры снова отображается на английском языке
+#game button Expand
+- summary: |
+    проверка работы кнопки Expand во время игры
+  requirement: |
+    Пользователь должен иметь возможность просмотреть текст задания в всплывающем окне Task Description
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры на вкладке TASK нажать на кнопку Expand
+  expected-result: |
+    Задание игры открывается в всплывающем окне
+#game button Expand_switching languages
+- summary: |
+    проверка переключения языков в всплывающем окне задания Task Description во время игры
+  requirement: |
+    Пользователь должен иметь возможность переключить язык в всплывающем окне Task Description
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры на вкладке TASK нажать на кнопку Expand
+    - в выпадающем списке переключения языка на русский, выбрав RU 
+    - переключиться обратно на английский язык EN через выпадающий список
+  expected-result: |
+    Задание игры отображается на русском языке и переключается обратно на английский
+#game button Expand close
+- summary: |
+    проверка закрытия всплывающего окна Task Description во время игры
+  requirement: |
+    Пользователь должен иметь возможность закрыть всплывающее окно Task Description
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры на вкладке TASK нажать на кнопку Expand
+    - закрыть всплывающее окно Task Description, нажав на кнопку Close
+  expected-result: |
+    Task Description успешно закрылось
+#game dark theme
+- summary: |
+    проверка смены цветовой темы окна редактора кода на светлую/темную во время игры
+  requirement: |
+    Пользователь должен иметь возможность сменить цветовую тему в редакторе кода на светлую/темную во время игры
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры над редактором кода нажать кнопку переключения цветовой темы (солнышко/луна)
+    - переключить цветовую тему обратно
+  expected-result: |
+    Успешная смена темной и светлой темы в окне редактора кода
+#game reset solution
+- summary: |
+    проверка сброса написанного кода во время игры с помощью кнопки Reset solution
+  requirement: |
+    Пользователь должен иметь возможность сбросить написанный код во время игры
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры над редактором кода нажать кнопку Reset solution через троеточие
+  expected-result: |
+    Успешный сброс написанного кода
+#game button Run code
+- summary: |
+    проверка написанного решения во время игры с помощью кнопки Run
+  requirement: |
+    Пользователь должен иметь возможность проверить своё решение
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры нажать кнопку Run для проверки своего решения
+  expected-result: |
+    Запуск кода и открытие вкладки OUTPUT с выводом
+#game button Back Home 
+- summary: |
+    проверка кнопки Back Home во время игры
+  requirement: |
+    Пользователь должен иметь возможность выйти в главное меню из игры с помощью кнопки Back Home
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры нажать кнопку Back Home
+  expected-result: |
+    Успешный выход из игры на страницу Lobby
+#game button Continue 
+- summary: |
+    проверка возврата в игру со страницы Lobby с сохранением прогресса решения
+  requirement: |
+    Пользователь должен иметь возможность вернуться в игру 
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры нажать кнопку Back Home
+    - в Lobby нажать кнопку Continue
+  expected-result: |
+    Успешный возврат в игру со страницы Lobby с сохранением прогресса решения
+#game button Give up
+- summary: |
+    проверка возможности сдаться во время игры с помощью кнопки Give up
+  requirement: |
+    Пользователь должен иметь возможность сдаться, если не получается решить задание 
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры нажать кнопку Give up
+  expected-result: |
+    Успешный выход из игры с сообщением "If you read this you ve lost the game"
+#game button Open History
+- summary: |
+    проверка просмотра истории игры с помощью кнопки Open History
+  requirement: |
+    Пользователь должен иметь возможность посмотреть историю игры
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры нажать кнопку Open History
+  expected-result: |
+    Открывается меню просмотра истории игры
+#game button Open History_Return to Game
+- summary: |
+    проверка выхода из просмотра истории игры с помощью кнопки Return to game с сохранением проогресса решения
+  requirement: |
+    Пользователь должен иметь возможность выйти из посмотра истории игры
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в процессе игры нажать кнопку Open History
+    - после просмотра истории нажать кнопку Return to Game 
+  expected-result: |
+    Закрывается меню просмотра истории игры с сохранением прогресса решения задачи  
+#game winning
+- summary: |
+    проверка возможности победить в игре
+  requirement: |
+    Пользователь должен иметь возможность победить игру
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создать игру с ботом level elementary, task distance_across_river, time control 15 min, 
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - записать решение 
+  expected-result: |
+    Закрывается меню просмотра истории игры с сохранением прогресса решения задачи  
