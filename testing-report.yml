@@ -43,7 +43,7 @@
   status: pass 
 - summary: |
     проверка создания игры с другом
-  status: pass 
+  status: fail 
 - summary: |
     проверка работы чата в игре с другом
   status: pass 
