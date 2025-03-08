@@ -9,7 +9,7 @@
   test-data: |
     empty
   steps:
-    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку "TRY SIMPLE BATTLE"
+    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку TRY SIMPLE BATTLE
   expected-results: |
     Успешное создание игры без регистрации
 #registration
