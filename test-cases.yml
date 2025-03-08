@@ -1,17 +1,4 @@
 ---
-#tutorial game
-- summary: |
-    Проверка возможности создать игру без регистрации и авторизации
-  requirement: |
-    Любой пользователь имеет возможность начать игру без регистрации и авторизации
-  prerequisites: |
-    empty
-  test-data: |
-    empty
-  steps:
-    - на сайте игры https://codebattle.hexlet.io/ нажать кнопку TRY SIMPLE BATTLE
-  expected-results: |
-    Успешное создание игры без регистрации
 #registration
 - summary: |
     Успешная регистрация на сайте
