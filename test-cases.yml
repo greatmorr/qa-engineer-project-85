@@ -532,7 +532,7 @@
   steps:
     - в процессе игры нажать кнопку Give up
   expected-result: |
-    Успешный выход из игры с сообщением "If you read this you ve lost the game"
+    Успешный выход из игры с сообщением "If you read this you've lost the game"
 #game button Open History
 - summary: |
     проверка просмотра истории игры с помощью кнопки Open History
@@ -564,11 +564,17 @@
     - после просмотра истории нажать кнопку Return to Game 
   expected-result: |
     Закрывается меню просмотра истории игры с сохранением прогресса решения задачи  
-#game winning
+#game winning solution for Python 3.12.2
+# from typing import List, Dict
+# from math import pow
+# def solution(width:int, boat: int, river: int) -> float:
+# time = float(width) / boat
+# distance = round(pow((pow(time * river,2)+pow(width,2)),0.5))
+# return distance
 - summary: |
     проверка возможности победить в игре
   requirement: |
-    Пользователь должен иметь возможность победить игру
+    Пользователь должен иметь возможность победить в игре, написав правильное решение
   prerequisites: |
     авторизоваться, используя данные пользователя с Nickname Shifr
     создать игру с ботом level elementary, task distance_across_river, time control 15 min, 
@@ -578,4 +584,129 @@
   steps:
     - записать решение 
   expected-result: |
-    Закрывается меню просмотра истории игры с сохранением прогресса решения задачи  
+    Появляется окно с надписью Woohoo, you're Champion!!!!! 
+#changing machine code while in game
+- summary: |
+    проверка возможности сменить язык программирования во время игры
+  requirement: |
+    Пользователь должен иметь возможность сменить язык программирования во время игры
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - через выпадающий список выбрать другой язык программирования
+  expected-result: |
+    Происходит смена языка и меняется шаблон в редакторе кода 
+#changing machine code while in game
+- summary: |
+    проверка возможности сменить язык программирования во время игры
+  requirement: |
+    Пользователь должен иметь возможность сменить язык программирования во время игры
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - через выпадающий список выбрать другой язык программирования
+  expected-result: |
+    Происходит смена языка и меняется шаблон в редакторе кода 
+#profile
+- summary: |
+    проверка возможности просмотра своего профиля
+  requirement: |
+    Пользователь должен иметь возможность посмотреть свой профиль со статистикой, завершенными играми
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - перейти в профиль
+    - посмотреть Statistics
+    - перейти на вкладку Completed games
+  expected-result: |
+    На странице профиля на вкладке Statistics показывается rank, elo_ratig, games played, activity. На вкладке Completed games можно открыть и посмотреть завершенные игры.
+#settings_name
+- summary: |
+    проверка возможности редактировать свои данные Your name
+  requirement: |
+    Пользователь должен иметь возможность редактировать свои настройки - Your name
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - перейти в Настройки
+    - изменить Your name
+    - нажать Save
+  expected-result: |
+    Успешное изменение Your name
+#settings_weapon
+- summary: |
+    проверка возможности редактировать свои данные Your weapon
+  requirement: |
+    Пользователь должен иметь возможность редактировать свои настройки - Your weapon
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - перейти в Настройки
+    - изменить Your weapon
+    - нажать Save
+  expected-result: |
+    Успешное изменение Your weapon
+#settings_clan
+- summary: |
+    проверка возможности редактировать свои данные Your clan
+  requirement: |
+    Пользователь должен иметь возможность редактировать свои настрорйки Your clan
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - перейти в Настройки
+    - изменить Your clan
+    - нажать Save
+  expected-result: |
+    Успешное изменение Your clan
+#XSS injection
+- summary: |
+    проверка сайта на XSS уязвимость
+  requirement: |
+    Сайт должен быть защищен от XSS-инъекциии
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - в Lobby, в чате General вставить в строку Be nice in chat - текст <script>alert('Я отправил вам скрипт! Пришлите денег, пожалуйста :(')</script>
+    - нажать кнопку Send
+  expected-result: |
+    Скрипт не исполнился, появится в окне чате отразится как обычный текст.
+#no cheating in game
+- summary: |
+    Проверка сайта на защиту от читинга (невозможность копирования задания и вставка в редактор кода)
+  requirement: |
+    Сайт должен быть защищен от мухлежа
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+    создана игра с ботом
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - выделить и скопировать текст задания
+    - вставить из буфера строку в редактор кода
+  expected-result: |
+    Сайт не позволяет скопировать задание, и не дает вставлять в редактор кода произвольную строку из буфера.
