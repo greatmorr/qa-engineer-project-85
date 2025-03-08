@@ -1,8 +1,5 @@
 ---
 - summary: |
-    Пробная игра без регистрации и авторизации
-  status: pass
-- summary: |
     Успешная регистрация на сайте
   status: pass
 - summary: |
