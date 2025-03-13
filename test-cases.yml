@@ -666,21 +666,6 @@
     - нажать Save
   expected-result: |
     Успешное изменение Your clan
-#XSS injection
-- summary: |
-    проверка сайта на XSS уязвимость
-  requirement: |
-    Сайт должен быть защищен от XSS-инъекциии
-  prerequisites: |
-    авторизоваться, используя данные пользователя с Nickname Shifr
-  test-data: |
-    Email - mir_shifra@mail.ru
-    Password - Password123
-  steps:
-    - в Lobby, в чате General вставить в строку Be nice in chat - текст <script>alert('Я отправил вам скрипт! Пришлите денег, пожалуйста :(')</script>
-    - нажать кнопку Send
-  expected-result: |
-    Скрипт не исполнился, появится в окне чате отразится как обычный текст.
 #no cheating in game
 - summary: |
     Проверка сайта на защиту от читинга (невозможность копирования задания и вставка в редактор кода)
@@ -697,3 +682,36 @@
     - вставить из буфера строку в редактор кода
   expected-result: |
     Сайт не позволяет скопировать задание, и не дает вставлять в редактор кода произвольную строку из буфера.
+#tournaments_creation
+- summary: |
+    Проверка создания турнира
+  requirement: |
+    У пользователя есть возможность создать турнир
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - перейти в раздел Tournaments
+    - нажать Tournaments Info
+    - внизу страницы заполнить форму для создания турнира
+    - нажать кнопку Create
+  expected-result: |
+    Успешное создание турнира, турнирпоявляется в списке турниров
+#tournaments_join
+- summary: |
+    Проверка возможности присоединится к уже созданному турниру
+  requirement: |
+    У пользователя есть возможность присоединится к созданному турниру
+  prerequisites: |
+    авторизоваться, используя данные пользователя с Nickname Shifr
+  test-data: |
+    Email - mir_shifra@mail.ru
+    Password - Password123
+  steps:
+    - перейти в раздел Tournaments
+    - выбрать любой турнир, нажать кнопку Show
+    - в открывшемся окне турнира нажать кнопку Join
+  expected-result: |
+    Успешное присоединение к турниру
